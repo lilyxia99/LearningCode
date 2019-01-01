@@ -1,0 +1,75 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Tutorial5
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //1.Struct
+            Rectangle rect1;
+            rect1.length = 100;
+            rect1.width = 50;
+            Console.WriteLine("Area of rect1:{0}", rect1.Area());
+
+            Rectangle rect2 = new Rectangle(50, 40);
+
+            rect2 = rect1;//setting a value not a reference
+            rect1.length = 33;//this doesn't effect the sentence above, because it is not a reference
+
+            Console.WriteLine("rect2.length:{0}",rect2.length);
+
+            //2.Class-realworld object,field,method we can inherint class
+            //Project-->Add Class
+            //For 2.* see Animal.cs
+            Animal fox = new Animal()
+            {
+                name = "Red",
+                sound = "Raaawww"
+            };
+            Console.WriteLine("#of Animals:{0}", Animal.GetNumAnimals());//because it is a method so we put()behind
+            fox.MakeSound();
+
+            //3.add static utility class,for 3* See ShapeMath.cs
+            Console.WriteLine("Area of Rectangle:{0}", 
+                ShapeMath.GetArea("Rectangle",5,6));//之前定义的是string, double,dobule,输入的时候也要有相同的顺序
+
+            //4.*a data type of null
+            int? randNum = null;
+
+            if (randNum == null)
+            {
+                Console.WriteLine("randNum is null");
+            }if(!randNum.HasValue)//!returns false and true
+            {
+                Console.WriteLine("randNum is null");
+            }
+
+            Console.ReadLine();
+        }
+
+        //1*
+        struct Rectangle
+        {
+            public double length;
+            public double width;
+
+            public Rectangle(double l=1,
+                double w = 1)
+            {
+                length = 1;
+                width = w;
+            }
+
+            public double Area()
+            {
+                return length * width;
+            }
+        }
+
+    }
+}
